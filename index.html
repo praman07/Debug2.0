@@ -19,13 +19,13 @@
           <h1>FinanceFlow</h1>
         </div>
         <div class="balance-card">
-          <p>Total Balance</p>
+          <p class="amount-expense">TOTAL BALANCE</p>
           <h2 id="total-balance">$0.00</h2>
         </div>
       </header>
 
       <!-- Stats Grid -->
-      <div class="stats-grid">
+        <div class="stats-grid">
         <div class="stat-item income">
           <div class="stat-info">
             <span>Income</span>
@@ -40,18 +40,19 @@
         </div>
       </div>
 
+
       <!-- Controls -->
       <div class="controls">
-        <div class="search-bar">
+        <div class="search-bar logo">
           <input type="text" id="search-input" placeholder="Search transactions..." />
         </div>
-        <button class="btn-add" id="openModal">+ Add Transaction</button>
+        <button class="btn-add " id="openModal">+ Add Transaction</button>
       </div>
 
       <!-- Transaction List -->
       <div class="transaction-section">
-        <div class="section-header">
-          <h2>Recent Transactions</h2>
+        <div class="section-header logo amount-expense">
+          <h1>RECENT TRANSACTIONS</h1>
           <div class="filter-btns">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="income">Income</button>
