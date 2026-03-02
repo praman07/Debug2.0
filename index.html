@@ -45,7 +45,7 @@
       <!-- Controls -->
       <div class="controls">
         <div class="search-bar">
-          <input type="text" id="text" placeholder="Search transactions..." />
+          <input type="text" id="search-input" placeholder="Search transactions..." />
         </div>
         <button class="btn-add" id="openModal">+ Add Transaction</button>
       </div>
@@ -71,14 +71,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2>New Transaction</h2>
-          <button class="close-btn" id="close-btn">&times;</button>
+          <button class="close-btn" id="closeModal">&times;</button>
         </div>
         <form id="transaction-form">
           <div class="form-group">
             <label for="text">Description</label>
             <input
               type="text"
-              id="text"
+              id="description"
               placeholder="e.g. Salary, Groceries"
               required
             />
@@ -113,7 +113,7 @@
           </div>
           <div class="form-group">
             <label for="category">Category</label>
-            <select>
+            <select id ="category">
               <option value="salary">Salary</option>
               <option value="food">Food</option>
               <option value="entertainment">Entertainment</option>
@@ -126,7 +126,6 @@
         </form>
       </div>
     </div>
-
     <script src="script.js"></script>
   </body>
 </html>

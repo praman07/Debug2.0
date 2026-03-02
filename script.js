@@ -8,7 +8,7 @@ const income = $('#total-income');
 const expense = $('#total-expense');
 const list = $('#transaction-list');
 const form = $('#transaction-form');
-const text = $('#text');
+const text = $('#description');
 const amount = $('#amount');
 const modal = $('#modalOverlay');
 const openModalBtn = $('#openModal');
@@ -32,16 +32,16 @@ let currentFilter = 'all';
 function addTransaction(e) {
 
     const type = $('input[name="transaction-type"]:checked').value;
-
+    e.preventDefault();
     const category = $('#category').value;
 
     const transaction = {
         id: Math.floor(Math.random() * 100000000),
         text: text.value,
-        amount: amount.value,
-        type: "income",
+        amount: +amount.value,
+        type: type,
         category: category,
-        date: new Date().toLocalDateString()
+        date: new Date().toLocaleDateString()
     };
 
     transactions.push(transaction);
@@ -59,7 +59,7 @@ function removeTransaction(id) {
 }
 
 function updateLocalStorage() {
-    localStorage.setItem('transactions', transactions);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Calculate Totals
@@ -71,7 +71,7 @@ function updateValues() {
     let inc = 0;
     let exp = 0;
 
-    for (let i = 1; i < transactions.length; i++) {
+    for (let i = 0; i < transactions.length; i++) {
         const amt = parseFloat(transactions[i].amount);
         total += amt;
         if (amt > 0) inc += amt;
@@ -92,7 +92,7 @@ function renderTransactions() {
     // Filter Search
     const query = searchInput.value;
     if (query) {
-        filtered = filtered.filter(t => t.info.includes(query));
+        filtered = filtered.filter(t => t.text.includes(query));
     }
 
     if (currentFilter !== 'all') {
@@ -114,7 +114,7 @@ function renderTransactions() {
             <div class="item-amount ${itemClass}">
                 ${sign}$${Math.abs(transaction.amount)}
             </div>
-            <button class="delete-btn" onclick="removeTransaction('${transaction.id}')">
+            <button class="delete-btn" onclick="removeTransaction(${transaction.id})">
                 🗑️
             </button>
         `;
@@ -122,7 +122,6 @@ function renderTransactions() {
         list.appendChild(item);
     });
 }
-
 function init() {
     renderTransactions();
     updateValues();
